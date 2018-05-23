@@ -2,7 +2,7 @@
 
 //Highest % of games beating the spread
 
-$sql = "SELECT * FROM disrespect WHERE games_w_line >= $min_games ORDER BY perc_won DESC";
+$sql = "SELECT * FROM $table WHERE games >= $min_games ORDER BY perc_beat DESC";
 $result = mysql_query($sql) or die("MySQL error.\n\n" 
                                    . mysql_error());
 
@@ -14,8 +14,8 @@ for ($i = 0; $i<$rank_here; $i++){
 	$row = mysql_fetch_array($result);
 	
 	$team = $row['teamname'];
-	$perc = $row['perc_won'];
-	$wins = $row['wins'];
+	$perc = $row['perc_beat'];
+	$wins = $row['beats'];
 	$losses = $row['losses'];
 	$rank = $i+1;
 	echo "<tr><td>$rank</td><td>$team</td><td>$perc ($wins-$losses)</td></tr>";

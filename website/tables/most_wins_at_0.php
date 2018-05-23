@@ -2,7 +2,7 @@
 
 //Most wins with least variation from 50/50
 
-$sql = "SELECT * FROM disrespect WHERE wins_minus_losses = '0' AND wins > '0' ORDER BY wins DESC";
+$sql = "SELECT * FROM $table WHERE beats_net = '0' AND beats > '0' ORDER BY wins DESC";
 $result = mysql_query($sql) or die("MySQL error.\n\n" 
                                    . mysql_error());
 
@@ -16,12 +16,12 @@ while ($row = mysql_fetch_array($result)) {
 	
 	$team = $row['teamname'];
 	$wins = $row['games_won'];
-	$beats = $row['wins'];
+	$beats = $row['beats'];
 	$losses = $row['losses'];
-	$beat_net = $row['wins_minus_losses'];
+	$beat_net = $row['beats_net'];
 
 	$rank = $i+1;
-	echo "<tr><td>$rank</td><td>$team</td><td>Results vs spread: $beats-$losses</td></tr>";
+	echo "<tr><td>$rank</td><td>$team</td><td>Results vs spread: $beats_net</td></tr>";
 	$i++;
 	
 	
@@ -29,7 +29,7 @@ while ($row = mysql_fetch_array($result)) {
 
 if ($i < $rank_here) {
 
-	$sql = "SELECT * FROM disrespect WHERE wins_minus_losses = '1' OR wins_minus_losses = '-1' ORDER BY games_won DESC";
+	$sql = "SELECT * FROM $table WHERE beats_net = '1' OR beats_net = '-1' ORDER BY games_won DESC";
 	$result = mysql_query($sql) or die("MySQL error.\n\n" 
                                    . mysql_error());
 	
@@ -39,12 +39,12 @@ if ($i < $rank_here) {
 		
 		$team = $row['teamname'];
 		$wins = $row['games_won'];
-		$beats = $row['wins'];
+		$beats = $row['beats'];
 		$losses = $row['losses'];
-		$beat_net = $row['wins_minus_losses'];
+		$beat_net = $row['beats_net'];
 
 		$rank = $i+1;
-		echo "<tr><td>$rank</td><td>$team</td><td>Results vs spread: $beats-$losses</td></tr>";
+		echo "<tr><td>$rank</td><td>$team</td><td>Results vs spread: $beats_net</td></tr>";
 		$i++;	
 	
 	}

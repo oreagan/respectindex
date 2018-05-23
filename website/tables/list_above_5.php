@@ -2,7 +2,7 @@
 
 //Full List ($min_games+)
 
-$sql = "SELECT * FROM disrespect WHERE games_w_line >= $min_games ORDER BY wins_minus_losses DESC, wins DESC";
+$sql = "SELECT * FROM $table WHERE games >= $min_games ORDER BY beats_net DESC, beats DESC";
 $result = mysql_query($sql) or die("MySQL error.\n\n" 
                                    . mysql_error());
 
@@ -31,13 +31,13 @@ $rank = 0;
 while ( $row = mysql_fetch_array($result) ) {
 	
 	$team = $row['teamname'];
-	$perc = $row['perc_won'];
-	$wins = $row['wins'];
+	$perc = $row['perc_beat'];
+	$wins = $row['beats'];
 	$losses = $row['losses'];
-	$win_loss = $row['wins_minus_losses'];
-	$games_w_line = $row['games_w_line'];
+	$win_loss = $row['beats_net'];
+	$games_w_line = $row['games'];
 	$pushes = $row['pushes'];
-	$perc_won = $row['perc_won'];
+	$perc_won = $row['perc_beat'];
 	$perc_lost = $row['perc_lost'];
 	$perc_push = $row['perc_push'];
 	
