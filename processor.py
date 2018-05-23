@@ -1,4 +1,0 @@
-
-
-	tables = soup.findAll('table')
-
